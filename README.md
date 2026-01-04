@@ -2,7 +2,7 @@
 
 A professional, feature-rich mobile application designed to enhance the tourism experience through smart recommendations, location tracking, and personalized itineraries. Built with **Expo** and **React Native**, this app leverages modern mobile technologies to provide a seamless user experience.
 
-## 🚀 Features
+## Features
 
 *   **Interactive Maps**: Real-time navigation and point-of-interest discovery using `react-native-maps`.
 *   **Location Services**: Personalized suggestions based on user location via `expo-location`.
@@ -12,7 +12,7 @@ A professional, feature-rich mobile application designed to enhance the tourism 
 *   **Modern UI/UX**: Polished interface using `react-native-paper` and `react-native-vector-icons`.
 *   **Smooth Navigation**: Intuitive routing with `expo-router`.
 
-## 🛠 Tech Stack
+## Tech Stack
 
 *   **Framework**: [React Native](https://reactnative.dev/) (via [Expo](https://expo.dev/))
 *   **Language**: TypeScript
@@ -21,7 +21,7 @@ A professional, feature-rich mobile application designed to enhance the tourism 
 *   **State Management**: React Context & Hooks
 *   **Networking**: Axios
 
-## 📂 Project Structure
+##  Project Structure
 
 The project code is located in the `Smart-Tourism-mobile` directory.
 
@@ -38,7 +38,7 @@ Smart-Tourism-mobile/
 └── App.tsx              # Application entry point
 ```
 
-## 🏁 Getting Started
+##  Getting Started
 
 Follow these steps to set up and run the project locally.
 
@@ -68,7 +68,7 @@ Follow these steps to set up and run the project locally.
     yarn install
     ```
 
-## 🏃‍♂️ Running the App
+##  Running the App
 
 Start the development server:
 
@@ -82,17 +82,11 @@ This will display a QR code in the terminal.
 *   **Emulator**: Press `a` for Android Emulator or `i` for iOS Simulator.
 *   **Web**: Press `w` to run in the browser.
 
-## 📝 Scripts
+##  Scripts
 
 *   `npm run start`: Start the Expo development server.
 *   `npm run android`: Open directly in Android Emulator.
 *   `npm run ios`: Open directly in iOS Simulator.
 *   `npm run web`: Open in web browser.
 
-## 🤝 Contributing
-
-1.  Fork the repository.
-2.  Create your feature branch (`git checkout -b feature/AmazingFeature`).
-3.  Commit your changes (`git commit -m 'Add some AmazingFeature'`).
-4.  Push to the branch (`git push origin feature/AmazingFeature`).
-5.  Open a Pull Request.
+## 

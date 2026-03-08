@@ -8,8 +8,7 @@ import { router, Stack } from 'expo-router';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useAuth } from '../context/AuthContext';
-import { generateMockItinerary } from '../services/mockItineraryGenerator';
-import { storeItinerary } from '../services/mockItineraryStorage';
+import { itineraryService } from '../services/itineraryService';
 
 const { width, height } = Dimensions.get('window');
 
@@ -110,8 +109,6 @@ export default function Questionnaire() {
 
         setLoading(true);
         try {
-            await new Promise(resolve => setTimeout(resolve, 1500));
-
             const locationMap = {
                 colombo: { name: 'Colombo', coordinates: { latitude: 6.9271, longitude: 79.8612 } },
                 kandy: { name: 'Kandy', coordinates: { latitude: 7.2906, longitude: 80.6337 } },
@@ -120,7 +117,7 @@ export default function Questionnaire() {
 
             const budgetMap = { budget: 50000, moderate: 100000, comfortable: 200000, luxury: 400000 };
 
-            const itinerary = generateMockItinerary({
+            const itinerary = await itineraryService.generateItinerary({
                 userId: user!.uid,
                 budget: budgetMap[budget],
                 days: parseInt(days),
@@ -131,13 +128,9 @@ export default function Questionnaire() {
                 startLocation: locationMap[startLocation],
             });
 
-            // Store in global mock storage
-            storeItinerary(itinerary);
-
-            // Navigate to itinerary detail
             router.push(`/itinerary/${itinerary.id}`);
         } catch (error) {
-            alert('Failed to generate. Please try again.');
+            alert('Failed to generate itinerary. Please check your connection and try again.');
         } finally {
             setLoading(false);
         }
@@ -507,7 +500,7 @@ export default function Questionnaire() {
                                     <Text style={styles.navButtonPrimaryText}>Generating...</Text>
                                 ) : (
                                     <>
-                                        <MaterialCommunityIcons name="sparkles" size={24} color="#2E7D32" />
+                                        <MaterialCommunityIcons name="auto-fix" size={24} color="#2E7D32" />
                                         <Text style={styles.navButtonPrimaryText}>Generate</Text>
                                     </>
                                 )}

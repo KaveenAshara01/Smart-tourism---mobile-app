@@ -20,7 +20,6 @@ export default function TabsLayout() {
                     backgroundColor: Colors.surface,
                     borderTopWidth: 1,
                     borderTopColor: Colors.border,
-
                     paddingBottom: insets.bottom,
                     paddingTop: 8,
                     height: 60 + insets.bottom,
@@ -31,6 +30,7 @@ export default function TabsLayout() {
                 },
             }}
         >
+            {/* ── Tourist tabs ── */}
             <Tabs.Screen
                 name="home"
                 options={{
@@ -42,12 +42,16 @@ export default function TabsLayout() {
             />
             <Tabs.Screen
                 name="myTrips"
-                options={{
-                    title: 'My Trips',
-                    tabBarIcon: ({ color, size }) => (
-                        <MaterialCommunityIcons name="bag-suitcase" size={size} color={color} />
-                    ),
-                }}
+                options={
+                    isAdmin
+                        ? { href: null }   // admins don't need My Trips
+                        : {
+                            title: 'My Trips',
+                            tabBarIcon: ({ color, size }) => (
+                                <MaterialCommunityIcons name="bag-suitcase" size={size} color={color} />
+                            ),
+                        }
+                }
             />
             <Tabs.Screen
                 name="map"
@@ -58,17 +62,36 @@ export default function TabsLayout() {
                     ),
                 }}
             />
-            {isAdmin && (
-                <Tabs.Screen
-                    name="simulator"
-                    options={{
-                        title: 'What-If',
-                        tabBarIcon: ({ color, size }) => (
-                            <MaterialCommunityIcons name="tune-variant" size={size} color={color} />
-                        ),
-                    }}
-                />
-            )}
+
+            {/* ── Admin-only tabs ── */}
+            <Tabs.Screen
+                name="simulator"
+                options={
+                    isAdmin
+                        ? {
+                            title: 'Simulator',
+                            tabBarIcon: ({ color, size }) => (
+                                <MaterialCommunityIcons name="tune-variant" size={size} color={color} />
+                            ),
+                        }
+                        : { href: null }   // hidden from tourists
+                }
+            />
+            <Tabs.Screen
+                name="admin"
+                options={
+                    isAdmin
+                        ? {
+                            title: 'Dashboard',
+                            tabBarIcon: ({ color, size }) => (
+                                <MaterialCommunityIcons name="shield-crown" size={size} color={color} />
+                            ),
+                        }
+                        : { href: null }   // hidden from tourists
+                }
+            />
+
+            {/* ── Common last tab ── */}
             <Tabs.Screen
                 name="profile"
                 options={{
@@ -76,14 +99,6 @@ export default function TabsLayout() {
                     tabBarIcon: ({ color, size }) => (
                         <MaterialCommunityIcons name="account-circle" size={size} color={color} />
                     ),
-                }}
-            />
-
-            {/* Hide admin screen - it's shown via simulator instead */}
-            <Tabs.Screen
-                name="admin"
-                options={{
-                    href: null, // This hides it from tabs
                 }}
             />
         </Tabs>

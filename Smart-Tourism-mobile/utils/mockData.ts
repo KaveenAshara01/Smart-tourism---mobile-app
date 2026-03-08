@@ -5,18 +5,18 @@ export interface DistrictData {
     id: string;
     name: DistrictName;
     coordinates: { latitude: number; longitude: number };
-    bounds: number[][];  // [lat, lon] polygon for highlighting
+    bounds: number[][];
     currentStats: {
         touristCount: number;
-        trafficLevel: number;  // 0-100
+        trafficLevel: number;
         weatherTemp: number;
         weatherCondition: string;
-        safetyScore: number;  // 0-100
+        safetyScore: number;
         crisisLevel: 'low' | 'medium' | 'high';
         topAttractions: string[];
     };
     forecast: {
-        nextMonth: number;  // Predicted tourist arrivals
+        nextMonth: number;
         confidence: number;
     };
 }
